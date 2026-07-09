@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGPREV | Avaliação de Benefício Previdenciário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #1c1c1c;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho Premium em Preto e Dourado */
+        header {
+            background: #111111;
+            color: white;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom: 2px solid #d4af37;
+        }
+
+        /* Container da Logo com fundo preto e sem o fundo branco original */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #111111;
+            margin-right: 15px;
+        }
+
+        .logo-svg {
+            width: 42px;
+            height: auto;
+        }
+
+        .header-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .header-text p {
+            font-size: 0.75rem;
+            color: #d4af37;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 1px;
+        }
+
+        /* Área do Card */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+            background-color: #f7f7f9;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            padding: 35px 24px;
+            max-width: 460px;
+            width: 100%;
+            border: 1px solid #eaeaea;
+        }
+
+        .step-indicator {
+            font-size: 0.75rem;
+            color: #b8923a;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .card h2 {
+            color: #111111;
+            font-size: 1.55rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            color: #333333;
+        }
+
+        .highlight {
+            color: #111111;
+            font-weight: 700;
+        }
+
+        .quiz-options {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        /* Botões de opção elegantes em preto */
+        .btn-option {
+            background: white;
+            color: #111111;
+            border: 2px solid #111111;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn-option:hover {
+            background-color: #111111;
+            color: white;
+        }
+
+        /* Botão de Ação Dourado Nobre */
+        .btn-prime {
+            display: block;
+            width: 100%;
+            background: linear-gradient(180deg, #dfba6b, #c49d4b);
+            color: #111111;
+            text-align: center;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(196, 157, 75, 0.3);
+            margin-top: 25px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-prime:hover {
+            opacity: 0.95;
+        }
+
+        .form-group {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #111111;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.75rem;
+            color: #777777;
+            border-top: 1px solid #eeeeee;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <!-- Sua logo reconstruída em formato vetorizado sem fundo -->
+            <svg class="logo-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40,20 L15,45 L50,75 L85,45 L70,32 M52,28 L62,38 L72,28" 
+                      fill="none" stroke="#dfba6b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="header-text">
+            <h1>LGPREV</h1>
+            <p>Advocacia Previdenciária</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="card" id="quiz-card">
+            <div class="step-indicator" id="step-text">Pergunta 1 de 5</div>
+            <h2 id="card-title">Seja muito bem-vindo.</h2>
+            
+            <div id="card-body">
+                <p>Descubra se você pode ter direito ao <span class="highlight">Auxílio-Acidente do INSS</span>.</p>
+                <p>Este benefício pode ser acumulado com o seu salário e pago mensalmente até sua aposentadoria.</p>
+                <p>Responda a 5 perguntas rápidas e veja se você pode solicitar o seu benefício mensal e ainda receber valores atrasados retroativos.</p>
+                <p>É rápido, simples e seguro.</p>
+            </div>
+
+            <button class="btn-prime" id="start-btn" onclick="startQuiz()">Iniciar o teste</button>
+
+            <div class="quiz-options" id="options-container">
+                <button class="btn-option" onclick="nextStep('Sim')">Sim</button>
+                <button class="btn-option" onclick="nextStep('Não')">Não</button>
+            </div>
+
+            <form id="lead-form" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp (com DDD)</label>
+                    <input type="tel" id="whatsapp" required placeholder="(00) 00000-0000">
+                </div>
+                <button type="submit" class="btn-prime" id="submit-btn" style="display: none;">Ver meu resultado</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        LGPREV · Todos os direitos reservados · Análise consultiva segura
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                title: "Você passou por algum acidente de qualquer natureza ou adquiriu alguma doença por conta do seu trabalho?",
+                sub: "Vale qualquer situação: trânsito, acidentes domésticos, lazer ou no ambiente de trabalho."
+            },
+            {
+                title: "Esse evento deixou alguma sequela física permanente ou redução na sua capacidade de trabalho?",
+                sub: "Mesmo que a sequela seja mínima, ela interfere ou exige maior esforço no seu dia a dia?"
+            },
+            {
+                title: "Na época desse ocorrido, você possuía carteira assinada ou contribuía regularmente para o INSS?",
+                sub: "A qualidade de segurado no momento do acidente é um requisito importante."
+            },
+            {
+                title: "Você chegou a receber o auxílio-doença comum pago pelo INSS durante o período de recuperação?",
+                sub: "Ter recebido o afastamento temporário ajuda a comprovar o nexo da lesão."
+            },
+            {
+                title: "Excelente! Você possui exames, laudos ou relatórios médicos antigos que comprovem essa lesão?",
+                sub: "Documentos médicos são fundamentais para sustentar o pedido perante os avaliadores."
+            }
+        ];
+
+        let currentStep = 0;
+        let answers = []; 
+
+        function startQuiz() {
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('options-container').style.display = 'flex';
+            document.getElementById('step-text').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            document.getElementById('step-text').innerText = `Pergunta ${currentStep + 1} de 5`;
+            document.getElementById('card-title').innerText = questions[currentStep].title;
+            document.getElementById('card-body').innerHTML = `<p>${questions[currentStep].sub}</p>`;
+        }
+
+        function nextStep(answer) {
+            answers.push(answer);
+            currentStep++;
+
+            if (currentStep < questions.length) {
+                showQuestion();
+            } else {
+                showForm();
+            }
+        }
+
+        function showForm() {
+            document.getElementById('step-text').style.display = 'none';
+            document.getElementById('options-container').style.display = 'none';
+            
+            document.getElementById('card-title').innerText = "Pronto! Já temos sua análise inicial.";
+            document.getElementById('card-body').innerHTML = "<p>Para um especialista finalizar a avaliação e te orientar, preencha seus dados:</p>";
+            
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach(group => group.style.display = 'flex');
+            document.getElementById('submit-btn').style.display = 'block';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            alert(`Obrigado, ${nome}! Seus dados foram enviados. Nosso especialista entrará em contato em breve no número ${whatsapp}.`);
+        }
+    </script>
+</body>
+</html>
