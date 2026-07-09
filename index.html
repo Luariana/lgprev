@@ -3,320 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LGPREV | Avaliação de Benefício Previdenciário</title>
+    <title>LGPREV | Avaliação de Benefício</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: #fcfcfc;
-            color: #1c1c1c;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Cabeçalho Premium em Preto e Dourado */
-        header {
-            background: #111111;
-            color: white;
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-bottom: 2px solid #d4af37;
-        }
-
-        /* Container da Logo com fundo preto e sem o fundo branco original */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #111111;
-            margin-right: 15px;
-        }
-
-        .logo-svg {
-            width: 42px;
-            height: auto;
-        }
-
-        .header-text h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-
-        .header-text p {
-            font-size: 0.75rem;
-            color: #d4af37;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-top: 1px;
-        }
-
-        /* Área do Card */
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 24px 16px;
-            background-color: #f7f7f9;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-            padding: 35px 24px;
-            max-width: 460px;
-            width: 100%;
-            border: 1px solid #eaeaea;
-        }
-
-        .step-indicator {
-            font-size: 0.75rem;
-            color: #b8923a;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .card h2 {
-            color: #111111;
-            font-size: 1.55rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 20px;
-        }
-
-        .card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 18px;
-            color: #333333;
-        }
-
-        .highlight {
-            color: #111111;
-            font-weight: 700;
-        }
-
-        .quiz-options {
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 25px;
-        }
-
-        /* Botões de opção elegantes em preto */
-        .btn-option {
-            background: white;
-            color: #111111;
-            border: 2px solid #111111;
-            border-radius: 6px;
-            padding: 14px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-transform: uppercase;
-        }
-
-        .btn-option:hover {
-            background-color: #111111;
-            color: white;
-        }
-
-        /* Botão de Ação Dourado Nobre */
-        .btn-prime {
-            display: block;
-            width: 100%;
-            background: linear-gradient(180deg, #dfba6b, #c49d4b);
-            color: #111111;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #000000; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header { 
+            background: #000000; 
+            padding: 20px; 
+            border-bottom: 2px solid #d4af37; 
             text-align: center;
-            padding: 16px;
-            border-radius: 6px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(196, 157, 75, 0.3);
-            margin-top: 25px;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+        }
+        .logo-img { height: 65px; margin-bottom: 8px; }
+        h1 { color: #d4af37; font-size: 1.6rem; letter-spacing: 2px; font-weight: 700; }
+        
+        main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; background-color: #000000; }
+        
+        .card { 
+            background-color: #111111; 
+            border: 1px solid #d4af37; 
+            padding: 35px 25px; 
+            border-radius: 12px; 
+            width: 100%; 
+            max-width: 460px; 
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .step-indicator { color: #d4af37; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; }
+        h2 { color: #ffffff; font-size: 1.4rem; line-height: 1.4; margin-bottom: 20px; }
+        p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 18px; color: #ffffff; }
+        
+        .btn { 
+            display: block; 
+            width: 100%; 
+            background: linear-gradient(180deg, #dfba6b, #c49d4b); 
+            color: #000000; 
+            padding: 16px; 
+            margin-top: 20px; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 1.1rem;
+            font-weight: bold; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            box-shadow: 0 4px 15px rgba(196, 157, 75, 0.2);
             transition: opacity 0.2s;
         }
-
-        .btn-prime:hover {
-            opacity: 0.95;
+        .btn:hover { opacity: 0.9; }
+        
+        .option-btn { 
+            background: #111111; 
+            color: #ffffff; 
+            border: 1px solid #d4af37; 
+            padding: 14px; 
+            margin: 10px 0; 
+            width: 100%; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.2s;
         }
-
-        .form-group {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 16px;
-            text-align: left;
-        }
-
-        .form-group label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #111111;
-        }
-
-        .form-group input {
-            padding: 12px;
-            border: 1px solid #cccccc;
-            border-radius: 6px;
+        .option-btn:hover { background: #d4af37; color: #000000; }
+        
+        input { 
+            width: 100%; 
+            padding: 14px; 
+            margin: 12px 0; 
+            border-radius: 6px; 
+            border: 1px solid #d4af37; 
+            background: #1a1a1a; 
+            color: #ffffff; 
             font-size: 1rem;
-            outline: none;
+            outline: none; 
         }
-
-        .form-group input:focus {
-            border-color: #111111;
+        input:focus { border-color: #ffffff; }
+        
+        .phone-display {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 12px 25px;
+            border: 1px dashed #d4af37;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.75rem;
-            color: #777777;
-            border-top: 1px solid #eeeeee;
-            background-color: white;
-        }
+        
+        footer { padding: 20px; font-size: 0.75rem; color: #666666; text-align: center; background: #000000; border-top: 1px solid #111111; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <!-- Sua logo reconstruída em formato vetorizado sem fundo -->
-            <svg class="logo-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                <path d="M40,20 L15,45 L50,75 L85,45 L70,32 M52,28 L62,38 L72,28" 
-                      fill="none" stroke="#dfba6b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
-        <div class="header-text">
-            <h1>LGPREV</h1>
-            <p>Advocacia Previdenciária</p>
-        </div>
+        <img src="https://i.imgur.com/vH9XgNl.png" alt="Logo LGPREV" class="logo-img">
+        <h1>LGPREV</h1>
     </header>
 
     <main>
-        <div class="card" id="quiz-card">
-            <div class="step-indicator" id="step-text">Pergunta 1 de 5</div>
-            <h2 id="card-title">Seja muito bem-vindo.</h2>
-            
-            <div id="card-body">
-                <p>Descubra se você pode ter direito ao <span class="highlight">Auxílio-Acidente do INSS</span>.</p>
-                <p>Este benefício pode ser acumulado com o seu salário e pago mensalmente até sua aposentadoria.</p>
+        <div class="card" id="main-box">
+            <h2 id="titulo" style="text-align: left; margin-bottom: 25px;">Avaliação de Benefício Previdenciário</h2>
+            <div id="conteudo" style="text-align: left;">
+                <p>Descubra se você pode ter direito ao auxilio acidente do inss.</p>
+                <p>Esse Benefício pode ser acumulado com seu salário e pago mensalmente até sua aposentadoria.</p>
                 <p>Responda a 5 perguntas rápidas e veja se você pode solicitar o seu benefício mensal e ainda receber valores atrasados retroativos.</p>
-                <p>É rápido, simples e seguro.</p>
+                <button class="btn" onclick="iniciarTeste()">INICIAR O TESTE</button>
             </div>
-
-            <button class="btn-prime" id="start-btn" onclick="startQuiz()">Iniciar o teste</button>
-
-            <div class="quiz-options" id="options-container">
-                <button class="btn-option" onclick="nextStep('Sim')">Sim</button>
-                <button class="btn-option" onclick="nextStep('Não')">Não</button>
-            </div>
-
-            <form id="lead-form" onsubmit="submitForm(event)">
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" required placeholder="Digite seu nome">
-                </div>
-                <div class="form-group">
-                    <label for="whatsapp">WhatsApp (com DDD)</label>
-                    <input type="tel" id="whatsapp" required placeholder="(00) 00000-0000">
-                </div>
-                <button type="submit" class="btn-prime" id="submit-btn" style="display: none;">Ver meu resultado</button>
-            </form>
         </div>
     </main>
 
-    <footer>
-        LGPREV · Todos os direitos reservados · Análise consultiva segura
-    </footer>
+    <footer>LGPREV Advogados · Análise gratuita do seu caso</footer>
 
     <script>
-        const questions = [
+        const WHATSAPP_CONTATO = "21990563567";
+
+        const fluxoPerguntas = [
             {
-                title: "Você passou por algum acidente de qualquer natureza ou adquiriu alguma doença por conta do seu trabalho?",
-                sub: "Vale qualquer situação: trânsito, acidentes domésticos, lazer ou no ambiente de trabalho."
+                texto: "Você sofreu algum acidente, ou a sua doença foi causada pelo trabalho?",
+                detalhe: "Em caso de acidente, pode ter sido qualquer tipo: no trabalho, em casa, no trânsito, etc.",
+                eliminaNoNão: true,
+                motivoEliminação: "Pelas suas respostas, você não se enquadra no auxílio-acidente.<br><br>Esse benefício exige que tenha havido um acidente, ou uma doença causada pelo trabalho.<br><br>Caso essa situação mude no futuro, ou caso tenha outro assunto sobre INSS ou Direitos Trabalhistas, guarde nosso contato:"
             },
             {
-                title: "Esse evento deixou alguma sequela física permanente ou redução na sua capacidade de trabalho?",
-                sub: "Mesmo que a sequela seja mínima, ela interfere ou exige maior esforço no seu dia a dia?"
+                texto: "Na data do acidente (ou quando a doença apareceu), você estava trabalhando com carteira assinada?",
+                detalhe: "Marque SIM se você possuía registro em carteira na época do evento.",
+                eliminaNoNão: false // Se disser Não, vai para a pergunta de tempo de desemprego (Logica Avançada)
             },
             {
-                title: "Na época desse ocorrido, você possuía carteira assinada ou contribuía regularmente para o INSS?",
-                sub: "A qualidade de segurado no momento do acidente é um requisito importante."
+                texto: "Você ficou com sequelas causadas pelo acidente?",
+                detalhe: "As sequelas permanecem mesmo após o retorno às suas atividades normais?",
+                eliminaNoNão: true,
+                motivoEliminação: "Não foi possível identificar direito ao benefício.<br><br>O auxílio-acidente exige que a sequela cause redução da sua capacidade de exercer a função. Se hoje você consegue trabalhar normalmente, infelizmente não há direito ao benefício.<br><br>Se a situação se agravar com o tempo, ou tenha outro assunto sobre INSS, guarde nosso contato:"
             },
             {
-                title: "Você chegou a receber o auxílio-doença comum pago pelo INSS durante o período de recuperação?",
-                sub: "Ter recebido o afastamento temporário ajuda a comprovar o nexo da lesão."
+                texto: "Essa sequela faz com que você exerça a sua função com mais dificuldade?",
+                detalhe: "Mesmo que a redução da capacidade seja leve, ela exige um esforço maior no trabalho.",
+                eliminaNoNão: true,
+                motivoEliminação: "Não foi possível identificar direito ao benefício.<br><br>O auxílio-acidente exige que a sequela cause redução da sua capacidade de exercer a função. Se hoje você consegue trabalhar normalmente, infelizmente não há direito ao benefício.<br><br>Se a situação se agravar com o tempo, ou tenha outro assunto sobre INSS, guarde nosso contato:"
             },
             {
-                title: "Excelente! Você possui exames, laudos ou relatórios médicos antigos que comprovem essa lesão?",
-                sub: "Documentos médicos são fundamentais para sustentar o pedido perante os avaliadores."
+                texto: "Você tem algum documento médico comprovando a sequela?",
+                detalhe: "Laudos, exames de imagem, receitas ou relatórios médicos ajudam a sustentar a análise.",
+                eliminaNoNão: false // Mesmo sem documento, encaminha para o lead no formulário para tentar ajudar
             }
         ];
 
-        let currentStep = 0;
-        let answers = []; 
+        let índiceAtual = 0;
+        let históricoRespostas = [];
 
-        function startQuiz() {
-            document.getElementById('start-btn').style.display = 'none';
-            document.getElementById('options-container').style.display = 'flex';
-            document.getElementById('step-text').style.display = 'block';
-            showQuestion();
+        function iniciarTeste() {
+            índiceAtual = 0;
+            históricoRespostas = [];
+            gerarPergunta();
         }
 
-        function showQuestion() {
-            document.getElementById('step-text').innerText = `Pergunta ${currentStep + 1} de 5`;
-            document.getElementById('card-title').innerText = questions[currentStep].title;
-            document.getElementById('card-body').innerHTML = `<p>${questions[currentStep].sub}</p>`;
-        }
+        function gerarPergunta() {
+            // Se o usuário respondeu "Não" na pergunta da Carteira Assinada (pergunta índice 1), faz a pergunta condicional de tempo de desemprego
+            if (índiceAtual === 2 && históricoRespostas[1] === "Não") {
+                document.getElementById('main-box').innerHTML = `
+                    <div class="step-indicator">Pergunta Especial</div>
+                    <h2>Na data do acidente, fazia quanto tempo que você tinha saído do seu último emprego?</h2>
+                    <button class="option-btn" onclick="computarRespostaEspecial('Menos de 12 meses')">Menos de 12 meses</button>
+                    <button class="option-btn" onclick="computarRespostaEspecial('Mais de 12 meses')">Mais de 12 meses</button>
+                    <button class="option-btn" onclick="computarRespostaEspecial('Sempre sem registro')">Sempre sem registro</button>
+                `;
+                return;
+            }
 
-        function nextStep(answer) {
-            answers.push(answer);
-            currentStep++;
+            // Mapeia o índice visual real de 5 perguntas
+            let passoVisual = índiceAtual + 1;
+            if (históricoRespostas[1] === "Não" && índiceAtual >= 2) {
+                // Mantém a contagem correta se passou pela tela condicional
+                passoVisual = índiceAtual + 1; 
+            }
 
-            if (currentStep < questions.length) {
-                showQuestion();
+            if (índiceAtual < fluxoPerguntas.length) {
+                const p = fluxoPerguntas[índiceAtual];
+                document.getElementById('main-box').innerHTML = `
+                    <div class="step-indicator">Pergunta ${passoVisual} de 5</div>
+                    <h2>${p.texto}</h2>
+                    <p style="color: #aaaaaa; font-size: 0.95rem; margin-bottom: 25px;">${p.detalhe}</p>
+                    <button class="option-btn" onclick="computarResposta('Sim')">SIM</button>
+                    <button class="option-btn" onclick="computarResposta('Não')">NÃO</button>
+                `;
             } else {
-                showForm();
+                gerarFormulárioFinal();
             }
         }
 
-        function showForm() {
-            document.getElementById('step-text').style.display = 'none';
-            document.getElementById('options-container').style.display = 'none';
-            
-            document.getElementById('card-title').innerText = "Pronto! Já temos sua análise inicial.";
-            document.getElementById('card-body').innerHTML = "<p>Para um especialista finalizar a avaliação e te orientar, preencha seus dados:</p>";
-            
-            const formGroups = document.querySelectorAll('.form-group');
-            formGroups.forEach(group => group.style.display = 'flex');
-            document.getElementById('submit-btn').style.display = 'block';
+        function computarResposta(r) {
+            const p = fluxoPerguntas[índiceAtual];
+            históricoRespostas.push(r);
+
+            // Verifica desqualificação automática no "Não"
+            if (r === "Não" && p.eliminaNoNão) {
+                gerarTelaDesqualificado(p.motivoEliminação);
+                return;
+            }
+
+            índiceAtual++;
+            gerarPergunta();
         }
 
-        function submitForm(event) {
-            event.preventDefault();
-            const nome = document.getElementById('nome').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            alert(`Obrigado, ${nome}! Seus dados foram enviados. Nosso especialista entrará em contato em breve no número ${whatsapp}.`);
+        function computarRespostaEspecial(opção) {
+            históricoRespostas.push(`Período de Graça: ${opção}`);
+            
+            // Se estava desempregado há mais de 12 meses ou nunca teve registro, desqualifica por falta de qualidade de segurado
+            if (opção === "Mais de 12 meses" || opção === "Sempre sem registro") {
+                gerarTelaDesqualificado("Pelas suas respostas, não foi possível identificar a qualidade de segurado na data do evento.<br><br>O INSS exige contribuição ativa ou estar dentro do chamado 'período de graça' após a saída do emprego.<br><br>Se você tiver alguma dúvida ou quiser avaliar outra situação, guarde nosso contato:");
+                return;
+            }
+            
+            índiceAtual++; // Segue para a pergunta de sequelas (índice 2 do array principal)
+            gerarPergunta();
+        }
+
+        function gerarTelaDesqualificado(mensagem) {
+            document.getElementById('main-box').innerHTML = `
+                <h2 style="color: #dfba6b; margin-bottom: 20px;">ℹ️ Informação sobre o seu caso</h2>
+                <p style="text-align: left; font-size: 1rem; color: #ffffff;">${mensagem}</p>
+                <a href="https://wa.me/55${WHATSAPP_CONTATO}?text=Olá%20Doutora,%20fiz%20o%20teste%20no%20site%20e%20gostaria%20de%20tirar%20uma%20dúvida." class="phone-display" target="_blank">
+                    📱 (21) 99056-3567
+                </a>
+                <p style="font-size: 0.85rem; color: #666666; margin-top: 15px; font-style: italic;">Obrigado por acompanhar o meu trabalho. Um abraço 😉</p>
+            `;
+        }
+
+        function gerarFormulárioFinal() {
+            document.getElementById('main-box').innerHTML = `
+                <h2 style="color: #dfba6b;">Pronto! Já temos sua análise inicial.</h2>
+                <p>Para um especialista finalizar a avaliação e te orientar, preencha seus dados:</p>
+                <div style="text-align: left; margin-top: 20px;">
+                    <label style="color: #dfba6b; font-weight: bold; font-size: 0.9rem;">Nome completo</label>
+                    <input type="text" id="nome_cliente" placeholder="Digite seu nome">
+                    
+                    <label style="color: #dfba6b; font-weight: bold; font-size: 0.9rem; margin-top: 10px; display:block;">WhatsApp (com DDD)</label>
+                    <input type="tel" id="whatsapp_cliente" placeholder="(21) 99999-9999">
+                    
+                    <button class="btn" onclick="enviarDadosWhatsApp()">Ver meu resultado</button>
+                </div>
+            `;
+        }
+
+        function enviarDadosWhatsApp() {
+            const nome = document.getElementById('nome_cliente').value;
+            const telefone = document.getElementById('whatsapp_cliente').value;
+
+            if (!nome || !telefone) {
+                alert("Por favor, preencha todos os campos para prosseguir.");
+                return;
+            }
+
+            let msgText = `Olá, gostaria de uma análise para Auxílio-Acidente.\n\n`;
+            msgText += `*DADOS DO CLIENTE*\n`;
+            msgText += `• Nome: ${nome}\n`;
+            msgText += `• WhatsApp: ${telefone}\n\n`;
+            msgText += `*RESPOSTAS DA TRIAGEM*\n`;
+            
+            msgText += `1. Acidente ou doença do trabalho? *${históricoRespostas[0]}*\n`;
+            msgText += `2. Carteira assinada na época? *${históricoRespostas[1]}*\n`;
+            
+            // Organiza o texto da mensagem caso tenha a resposta especial de desemprego
+            if (históricoRespostas[1] === "Não") {
+                msgText += `• Situação de registro: *${históricoRespostas[2]}*\n`;
+                msgText += `3. Ficou com sequelas? *${históricoRespostas[3]}*\n`;
+                msgText += `4. Sequelas geram dificuldade? *${históricoRespostas[4]}*\n`;
+                msgText += `5. Possui documentos médicos? *${históricoRespostas[5]}*`;
+            } else {
+                msgText += `3. Ficou com sequelas? *${históricoRespostas[2]}*\n`;
+                msgText += `4. Sequelas geram dificuldade? *${históricoRespostas[3]}*\n`;
+                msgText += `5. Possui documentos médicos? *${historicoRespostas[4] || 'Não informado'}*`;
+            }
+
+            window.open(`https://api.whatsapp.com/send?phone=55${WHATSAPP_CONTATO}&text=${encodeURIComponent(msgText)}`, '_blank');
         }
     </script>
 </body>
