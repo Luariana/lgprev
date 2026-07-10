@@ -99,7 +99,7 @@
             <div id="conteudo">
                 <p>Descubra se você pode ter direito ao Auxílio-Acidente do INSS.</p>
                 <p>Este benefício pode ser acumulado com o seu salário e pago mensalmente até sua aposentadoria.</p>
-                <p>Responda a algumas perguntas rápidas e veja se você pode solicitar o seu benefit mensal e ainda receber valores atrasados retroativos.</p>
+                <p>Responda a algumas perguntas rápidas e veja se você pode solicitar o seu benefício mensal e ainda receber valores atrasados retroativos.</p>
                 <p>É rápido, simples e seguro.</p>
                 <button class="btn" onclick="iniciarTeste()">INICIAR O TESTE</button>
             </div>
@@ -113,7 +113,7 @@
 
         const fluxoPerguntas = [
             {
-                texto: "Vocêrose sofreu algum acidente ou adquiriu alguma doença que deixou sequelas permanentes?",
+                texto: "Você sofreu algum acidente ou adquiriu alguma doença que deixou sequelas permanentes?",
                 eliminaNoNão: true,
                 motivoEliminação: "Infelizmente você não faz jus ao benefício do auxílio-acidente."
             },
@@ -151,7 +151,7 @@
             if (índiceAtual === 2 && respostasMapeadas.p2 === "Não") {
                 document.getElementById('main-box').innerHTML = `
                     <div class="step-indicator">Situação de Registro</div>
-                    <h2>Na data do acidente, há quanto tempo você tinha saído do seu último emprego formal?</h2>
+                    <h2>Na data do acidente, há quanto tempo você tinha saído do seu último emprego?</h2>
                     <p style="color: #aaaaaa; font-size: 0.9rem; margin-bottom: 15px;">A qualidade de segurado pode se manter ativa mesmo após o término do contrato de trabalho.</p>
                     <button class="option-btn" onclick="computarRespostaEspecial('Menos de 12 meses')">Menos de 12 meses</button>
                     <button class="option-btn" onclick="computarRespostaEspecial('Mais de 12 meses')">Mais de 12 meses</button>
