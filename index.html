@@ -12,9 +12,14 @@
             background: #000000; 
             padding: 20px; 
             border-bottom: 2px solid #d4af37; 
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
-        .logo-img { height: 85px; margin-bottom: 8px; object-fit: contain; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; object-fit: contain; }
+        .brand-name { color: #d4af37; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
         
         main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; background-color: #000000; }
         
@@ -76,13 +81,16 @@
             text-align: center;
         }
         
-        footer { padding: 20px; font-size: 0.75rem; color: #666666; text-align: center; background: #000000; border-top: 1px solid #111111; }
+        footer { padding: 20px; font-size: 0.85rem; color: #666666; text-align: center; background: #000000; border-top: 1px solid #111111; font-weight: bold; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="LOGO- LG.png" alt="Logo LGPREV" class="logo-img">
+        <div class="logo-container">
+            <img src="LOGO- LG.png" alt="Logo LGPREV" class="logo-img">
+            <span class="brand-name">LG PREV</span>
+        </div>
     </header>
 
     <main>
@@ -91,27 +99,27 @@
             <div id="conteudo">
                 <p>Descubra se você pode ter direito ao Auxílio-Acidente do INSS.</p>
                 <p>Este benefício pode ser acumulado com o seu salário e pago mensalmente até sua aposentadoria.</p>
-                <p>Responda a algumas perguntas rápidas e veja se você pode solicitar o seu benefício mensal e ainda receber valores atrasados retroativos.</p>
+                <p>Responda a algumas perguntas rápidas e veja se você pode solicitar o seu benefit mensal e ainda receber valores atrasados retroativos.</p>
                 <p>É rápido, simples e seguro.</p>
                 <button class="btn" onclick="iniciarTeste()">INICIAR O TESTE</button>
             </div>
         </div>
     </main>
 
-    <footer>LGPREV Advogados · Análise do seu caso</footer>
+    <footer>LG PREV ADVOCACIA ESPECIALIZADA</footer>
 
     <script>
         const WHATSAPP_CONTATO = "21990563567";
 
         const fluxoPerguntas = [
             {
-                texto: "Você sofreu algum acidente ou adquiriu alguma doença que deixou sequelas permanentes?",
+                texto: "Vocêrose sofreu algum acidente ou adquiriu alguma doença que deixou sequelas permanentes?",
                 eliminaNoNão: true,
                 motivoEliminação: "Infelizmente você não faz jus ao benefício do auxílio-acidente."
             },
             {
                 texto: "Na época do acidente, você trabalhava de carteira assinada?",
-                eliminaNoNão: false // Direciona para a condicional se responder Não
+                eliminaNoNão: false 
             },
             {
                 texto: "As sequelas reduzem sua capacidade para realizar o trabalho, mesmo trabalhando?",
@@ -120,28 +128,33 @@
             },
             {
                 texto: "Você tem documentos médicos da época do acidente ou que comprovem a sequela?",
-                eliminaNoNão: false // Qualquer resposta avança para o formulário final (pode comprovar depois com laudo)
+                eliminaNoNão: false 
             }
         ];
 
         let índiceAtual = 0;
-        let históricoRespostas = [];
+        let respostasMapeadas = {
+            p1: "",
+            p2: "",
+            p2_extra: "Não se aplica",
+            p3: "",
+            p4: ""
+        };
 
         function iniciarTeste() {
             índiceAtual = 0;
-            históricoRespostas = [];
+            respostasMapeadas = { p1: "", p2: "", p2_extra: "Não se aplica", p3: "", p4: "" };
             gerarPergunta();
         }
 
         function gerarPergunta() {
-            // Pergunta Condicional se responder "Não" na Carteira Assinada (índice 1)
-            if (índiceAtual === 2 && históricoRespostas[1] === "Não") {
+            if (índiceAtual === 2 && respostasMapeadas.p2 === "Não") {
                 document.getElementById('main-box').innerHTML = `
                     <div class="step-indicator">Situação de Registro</div>
                     <h2>Na data do acidente, há quanto tempo você tinha saído do seu último emprego formal?</h2>
                     <p style="color: #aaaaaa; font-size: 0.9rem; margin-bottom: 15px;">A qualidade de segurado pode se manter ativa mesmo após o término do contrato de trabalho.</p>
                     <button class="option-btn" onclick="computarRespostaEspecial('Menos de 12 meses')">Menos de 12 meses</button>
-                    <button class="option-btn" onclick="computarRespostaEspecial('Mais de 12 meses (com seguro-desemprego ou +120 contribuições)')">Mais de 12 meses (com seguro-desemprego ou +120 contribuições)</button>
+                    <button class="option-btn" onclick="computarRespostaEspecial('Mais de 12 meses')">Mais de 12 meses</button>
                     <button class="option-btn" onclick="computarRespostaEspecial('Sempre trabalhou sem registro')">Sempre trabalhou sem registro</button>
                 `;
                 return;
@@ -162,7 +175,11 @@
 
         function computarResposta(r) {
             const p = fluxoPerguntas[índiceAtual];
-            históricoRespostas.push(r);
+            
+            if (índiceAtual === 0) respostasMapeadas.p1 = r;
+            if (índiceAtual === 1) respostasMapeadas.p2 = r;
+            if (índiceAtual === 2) respostasMapeadas.p3 = r;
+            if (índiceAtual === 3) respostasMapeadas.p4 = r;
 
             if (r === "Não" && p.eliminaNoNão) {
                 gerarTelaDesqualificado(p.motivoEliminação);
@@ -174,14 +191,14 @@
         }
 
         function computarRespostaEspecial(opção) {
-            históricoRespostas.push(`Tempo de Saída: ${opção}`);
+            respostasMapeadas.p2_extra = opção;
             
             if (opção === "Sempre trabalhou sem registro") {
                 gerarTelaDesqualificado("Infelizmente você não se qualifica, pois o benefício exige qualidade de segurado ou recolhimento previdenciário na época do fato.");
                 return;
             }
             
-            índiceAtual++; // Avança para a pergunta 3 (redução de capacidade)
+            índiceAtual++; 
             gerarPergunta();
         }
 
@@ -189,7 +206,7 @@
             document.getElementById('main-box').innerHTML = `
                 <h2 style="color: #dfba6b; margin-bottom: 20px;">Agradecemos seu contato</h2>
                 <p style="font-size: 1.1rem; color: #ffffff; padding: 10px; line-height: 1.6;">${mensagem}</p>
-                <p style="font-size: 0.85rem; color: #555555; margin-top: 25px;">LGPREV Advocacia</p>
+                <p style="font-size: 0.85rem; color: #555555; margin-top: 25px;">LG PREV ADVOCACIA ESPECIALIZADA</p>
             `;
         }
 
@@ -218,22 +235,20 @@
                 return;
             }
 
-            let msgText = `Olá Doutora, finalizei a triagem para Auxílio-Acidente no site e gostaria de falar com o especialista.\n\n`;
+            let msgText = `Olá Dra, finalizei a triagem para Auxílio-Acidente no site e gostaria de falar com a especialista.\n\n`;
             msgText += `*DADOS DO CLIENTE*\n`;
             msgText += `• Nome: ${nome}\n`;
             msgText += `• WhatsApp: ${telefone}\n\n`;
             msgText += `*RESPOSTAS DA TRIAGEM*\n`;
-            msgText += `1. Acidente/Doença com sequela? *${históricoRespostas[0]}*\n`;
-            msgText += `2. Carteira assinada na época? *${históricoRespostas[1]}*\n`;
+            msgText += `1. Acidente/Doença com sequela? *${respostasMapeadas.p1}*\n`;
+            msgText += `2. Carteira assinada na época? *${respostasMapeadas.p2}*\n`;
             
-            if (históricoRespostas[1] === "Não") {
-                msgText += `• Detalhe do tempo fora: *${históricoRespostas[2]}*\n`;
-                msgText += `3. Sequelas reduzem capacidade? *${históricoRespostas[3]}*\n`;
-                msgText += `4. Possui documentos médicos? *${históricoRespostas[4]}*`;
-            } else {
-                msgText += `3. Sequelas reduzem capacidade? *${históricoRespostas[2]}*\n`;
-                msgText += `4. Possui documentos médicos? *${históricoRespostas[3]}*`;
+            if (respostasMapeadas.p2 === "Não") {
+                msgText += `• Detalhe do tempo fora: *${respostasMapeadas.p2_extra}*\n`;
             }
+            
+            msgText += `3. Sequelas reduzem capacidade? *${respostasMapeadas.p3}*\n`;
+            msgText += `4. Possui documentos médicos? *${respostasMapeadas.p4}*`;
 
             window.open(`https://api.whatsapp.com/send?phone=55${WHATSAPP_CONTATO}&text=${encodeURIComponent(msgText)}`, '_blank');
         }
