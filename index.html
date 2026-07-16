@@ -8,7 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #000000; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
         
-      header { 
+        header { 
             background: #000000; 
             padding: 15px 25px; 
             border-bottom: 2px solid #d4af37; 
@@ -128,18 +128,13 @@
             },
             {
                 texto: "Você tem documentos médicos da época do acidente ou que comprovem a sequela?",
-                eliminaNoNão: false 
+                eliminaNoNão: true,
+                motivoEliminação: "Infelizmente, para a viabilidade do processo, é indispensável a existência de provas documentais da época do acidente ou laudos atuais que comprovem o nexo causal. Sem documentos nenhum, a chance de êxito é mínima."
             }
         ];
 
         let índiceAtual = 0;
-        let respostasMapeadas = {
-            p1: "",
-            p2: "",
-            p2_extra: "Não se aplica",
-            p3: "",
-            p4: ""
-        };
+        let respostasMapeadas = { p1: "", p2: "", p2_extra: "Não se aplica", p3: "", p4: "" };
 
         function iniciarTeste() {
             índiceAtual = 0;
@@ -175,7 +170,6 @@
 
         function computarResposta(r) {
             const p = fluxoPerguntas[índiceAtual];
-            
             if (índiceAtual === 0) respostasMapeadas.p1 = r;
             if (índiceAtual === 1) respostasMapeadas.p2 = r;
             if (índiceAtual === 2) respostasMapeadas.p3 = r;
@@ -192,12 +186,10 @@
 
         function computarRespostaEspecial(opção) {
             respostasMapeadas.p2_extra = opção;
-            
             if (opção === "Sempre trabalhou sem registro") {
                 gerarTelaDesqualificado("Infelizmente você não se qualifica, pois o benefício exige qualidade de segurado ou recolhimento previdenciário na época do fato.");
                 return;
             }
-            
             índiceAtual++; 
             gerarPergunta();
         }
@@ -229,24 +221,17 @@
         function enviarDadosWhatsApp() {
             const nome = document.getElementById('nome_cliente').value;
             const telefone = document.getElementById('whatsapp_cliente').value;
-
             if (!nome || !telefone) {
                 alert("Por favor, preencha os campos para prosseguir.");
                 return;
             }
 
             let msgText = `Olá Dra, finalizei a triagem para Auxílio-Acidente no site e gostaria de falar com a especialista.\n\n`;
-            msgText += `*DADOS DO CLIENTE*\n`;
-            msgText += `• Nome: ${nome}\n`;
-            msgText += `• WhatsApp: ${telefone}\n\n`;
+            msgText += `*DADOS DO CLIENTE*\n• Nome: ${nome}\n• WhatsApp: ${telefone}\n\n`;
             msgText += `*RESPOSTAS DA TRIAGEM*\n`;
             msgText += `1. Acidente/Doença com sequela? *${respostasMapeadas.p1}*\n`;
             msgText += `2. Carteira assinada na época? *${respostasMapeadas.p2}*\n`;
-            
-            if (respostasMapeadas.p2 === "Não") {
-                msgText += `• Detalhe do tempo fora: *${respostasMapeadas.p2_extra}*\n`;
-            }
-            
+            if (respostasMapeadas.p2 === "Não") msgText += `• Detalhe: *${respostasMapeadas.p2_extra}*\n`;
             msgText += `3. Sequelas reduzem capacidade? *${respostasMapeadas.p3}*\n`;
             msgText += `4. Possui documentos médicos? *${respostasMapeadas.p4}*`;
 
